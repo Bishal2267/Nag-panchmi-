@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नाग पंचमी की हार्दिक शुभकामनाएँ!
+    click here 👇👇 👇 
+    </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* सामान्य बॉडी स्टाइल और पृष्ठभूमि */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #2c3e50, #0a192f); /* गहरा नीला ग्रेडिएंट पृष्ठभूमि */
+            color: #ecf0f1; /* हल्का ग्रे टेक्स्ट */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden; /* क्षैतिज स्क्रॉलिंग को रोकें */
+        }
+
+        /* सूक्ष्म तारों वाला पृष्ठभूमि प्रभाव */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* हेडर स्टाइल */
+        .header {
+            background-color: rgba(0, 0, 0, 0.3); /* थोड़ा पारदर्शी हेडर */
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: fixed; /* स्थिर हेडर */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .header .logo img {
+            width: 28px;
+            height: 28px;
+            margin-right: 8px;
+        }
+
+        /* फिक्स्ड फुटर को समायोजित करने के लिए मुख्य कंटेनर पैडिंग */
+        .main-container {
+            padding-top: 40px; /* फिक्स्ड हेडर के लिए जगह */
+            padding-bottom: 40px; /* फिक्स्ड शेयर बटन फुटर के लिए बढ़ी हुई जगह */
+            width: 100%;
+            max-width: 600px; /* सामग्री के लिए अधिकतम चौड़ाई */
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1; /* कंटेनर को उपलब्ध स्थान लेने की अनुमति देता है */
+        }
+
+        /* शुभकामना कार्ड स्टाइल */
+        .wish-card {
+            background: rgba(44, 62, 80, 0.7); /* थोड़ा गहरा, पारदर्शी कार्ड पृष्ठभूमि */
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: calc(100% - 40px); /* पैडिंग के लिए चौड़ाई समायोजित करें */
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .greeting-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffeaa7; /* हल्का पीला */
+            text-shadow: 0 0 8px rgba(255, 255, 0, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .main-wish-message {
+            font-size: 1.2em;
+            color: #a2d2ff; /* हल्का नीला */
+            line-height: 1.6;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0; /* कुछ लंबवत पैडिंग जोड़ें */
+        }
+
+        /* नाम इनपुट और क्रिएट बटन के लिए नया रैपर (एक पंक्ति में) */
+        .name-input-wrapper {
+            background-color: rgba(255, 255, 255, 0.15); /* अर्ध-पारदर्शी सफेद */
+            border-radius: 12px;
+            padding: 8px 10px; /* क्षैतिज लेआउट के लिए पैडिंग कम की गई */
+            margin-top: 20px;
+            width: calc(100% - 40px);
+            max-width: 400px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex; /* इनपुट और बटन संरेखण के लिए फ्लेक्स का उपयोग करें */
+            flex-direction: row; /* क्षैतिज लेआउट */
+            align-items: center;
+            gap: 5px; /* इनपुट और बटन के बीच का अंतर कम किया गया */
+        }
+
+        .name-input {
+            flex-grow: 1; /* इनपुट को उपलब्ध स्थान लेने की अनुमति दें */
+            padding: 6px; /* थोड़ा कम पैडिंग */
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1em; /* इनपुट के लिए थोड़ा छोटा फ़ॉन्ट */
+            text-align: center;
+            outline: none;
+            min-width: 0; /* जगह बहुत सीमित होने पर इनपुट को सिकुड़ने दें */
+        }
+        .name-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .create-button {
+            flex-shrink: 0; /* बटन को सिकुड़ने से रोकें */
+            background: linear-gradient(to right, #8e44ad, #9b59b6); /* बैंगनी ग्रेडिएंट */
+            color: white;
+            padding: 8px 15px; /* बटन के लिए पैडिंग कम की गई */
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.8em; /* बटन के लिए छोटा फ़ॉन्ट */
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .create-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to right, #9b59b6, #8e44ad);
+        }
+
+        /* जादुई शुभकामना बटन स्टाइल */
+        .generate-wish-button {
+            background: linear-gradient(to right, #f39c12, #f1c40f); /* नारंगी/पीला ग्रेडिएंट */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: calc(100% - 40px); /* इनपुट कंटेनर की चौड़ाई से मेल खाता है */
+            max-width: 400px;
+            margin-top: 15px; /* ऊपर के कंटेनर से जगह */
+        }
+        .generate-wish-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to right, #f1c40f, #f39c12);
+        }
+
+        /* लोडिंग स्पिनर स्टाइल */
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 15px auto; /* लंबवत मार्जिन के साथ केंद्र में */
+            display: none; /* डिफ़ॉल्ट रूप से छिपा हुआ */
+        }
+
+        .loading-spinner.show {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        
+        
+        /* नाग पंचमी इमेज स्टाइल */
+        .nag-panchami-image {
+            width: 100%;
+            max-width: 250px; /* छोटी छवि */
+            height: auto;
+            border-radius: 12px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid white; /* हरा बॉर्डर */
+        }
+        .nag-panchami-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9px; /* आंतरिक त्रिज्या */
+        }
+
+        /* शेयर बटन के लिए फिक्स्ड फुटर */
+        .fixed-share-footer {
+            background-color: rgba(0, 0, 0, 0.5); /* अर्ध-पारदर्शी गहरा पृष्ठभूमि */
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around; /* आइटम को समान रूप से वितरित करें */
+            align-items: center;
+            gap: 10px; /* बटन के बीच का अंतर */
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            position: fixed; /* नीचे की ओर स्थिर */
+            bottom: 0;
+            left: 0;
+            z-index: 999; /* हेडर के नीचे */
+        }
+
+        .share-button {
+            display: flex;
+            flex-direction: column; /* आइकन और टेक्स्ट को स्टैक करें */
+            align-items: center;
+            justify-content: center;
+            flex: 1; /* बटन को समान चौड़ाई लेने दें */
+            padding: 10px 5px; /* छोटे फिक्स्ड बटन के लिए समायोजित पैडिंग */
+            border-radius: 12px; /* "बॉक्स" के लिए गोल कोने */
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: white; /* बटन के लिए डिफ़ॉल्ट टेक्स्ट रंग */
+            font-size: 0.8em; /* मोबाइल के लिए छोटा फ़ॉन्ट आकार */
+            text-align: center;
+        }
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .share-button img {
+            width: 28px; /* जोर देने के लिए थोड़ा बड़ा आइकन */
+            height: 28px;
+            margin-bottom: 5px; /* आइकन और टेक्स्ट के बीच जगह */
+            filter: brightness(0) invert(1); /* आइकन को सफेद करें */
+        }
+
+        .whatsapp-button { background-color: #25d366; }
+        .whatsapp-button:hover { background-color: #1da851; }
+        .facebook-button { background-color: #1877f2; }
+        .facebook-button:hover { background-color: #145cb3; }
+        .instagram-button { background-color: #c13584; } /* इंस्टाग्राम गुलाबी/बैंगनी */
+        .instagram-button:hover { background-color: #9f2a6b; }
+
+        .copy-message {
+            margin-top: 20px;
+            color: #6ab04c; /* सफलता संदेश के लिए हरा रंग */
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 0.9em;
+        }
+        .copy-message.show {
+            opacity: 1;
+        }
+
+        /* बड़े स्क्रीन के लिए मीडिया क्वेरी */
+        @media (min-width: 640px) {
+            .share-button {
+                padding: 12px 25px;
+                font-size: 1em;
+                flex-direction: row; /* बड़े स्क्रीन पर पंक्ति में वापस */
+            }
+            .share-button img {
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
+                margin-bottom: 0;
+            }
+            .fixed-share-footer {
+                padding: 20px; /* बड़े स्क्रीन पर अधिक पैडिंग */
+            }
+            .main-container {
+                padding-bottom: 100px; /* फुटर छोटा/अलग होने पर कम पैडिंग की आवश्यकता */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <!-- उपहार आइकन -->
+            <img src="https://drive.google.com/file/d/11NIMr4mbOB2FxATgxctNEU64qCLWvt70/view?usp=drivesdk" alt="उपहार आइकन" />
+            <span>HAPPY नाग पंचमी </span>
+        </div>
+        <!-- दाएं तरफ के आइकन/मेनू यहां जोड़े जा सकते हैं यदि आवश्यक हो -->
+    </header>
+
+    <div class="main-container">
+        <div class="wish-card">
+            <h2 class="greeting-text">
+                <span id="displayName"></span> की तरफ से
+            </h2>
+            <p id="mainWishMessage" class="main-wish-message">
+                आपको और आपके परिवार को नाग पंचमी के पावन अवसर पर हार्दिक शुभकामनाएँ!
+                <br>
+                नाग पंचमी का यह पावन पर्व आपके जीवन में सुख, शांति और समृद्धि लाए।
+                भगवान शिव और नाग देवता का आशीर्वाद सदा आप पर बना रहे।
+            </p>
+
+            <div class="nag-panchami-image">
+                <!-- नाग पंचमी इमेज के लिए प्लेसहोल्डर -->
+                <img src="https://drive.google.com/file/d/11VOvB9YZ1NMjgGIeh3Yex689XdZQSgBl/view?usp=drivesdk" alt="नाग पंचमी इमेज">
+            </div>
+
+            <!-- नाम इनपुट और क्रिएट बटन एक लाइन में -->
+            <div class="name-input-wrapper">
+                <input type="text" id="nameInput" class="name-input" placeholder="अपना नाम दर्ज करें">
+                <button id="createButton" class="create-button">बनाएँ</button>
+            </div>
+
+            <!-- जादुई शुभकामना बटन नीचे, पूरी चौड़ाई -->
+            <button id="generateWishButton" class="generate-wish-button">जादुई शुभकामना ✨</button>
+
+            <!-- एपीआई कॉल के लिए लोडिंग स्पिनर -->
+            <div id="loadingSpinner" class="loading-spinner"></div>
+
+            <!-- कॉपी संदेश यहां रह सकता है, या बटन के पास ले जाया जा सकता है -->
+            <p id="copyMessage" class="copy-message">इच्छा कॉपी हो गई! अब इसे इंस्टाग्राम पर पेस्ट करें।</p>
+        </div>
+    </div>
+
+    <!-- फिक्स्ड शेयर बटन फुटर -->
+    <div class="fixed-share-footer">
+        <button id="whatsappShare" class="share-button whatsapp-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp आइकन">
+            <span>WhatsApp</span>
+        </button>
+        <button id="facebookShare" class="share-button facebook-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook आइकन">
+            <span>Facebook</span>
+        </button>
+        <button id="instagramShare" class="share-button instagram-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram आइकन">
+            <span>Instagram</span>
+        </button>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        const displayName = document.getElementById('displayName');
+        const mainWishMessage = document.getElementById('mainWishMessage'); // संदेश एलिमेंट प्राप्त करें
+        const createButton = document.getElementById('createButton');
+        const generateWishButton = document.getElementById('generateWishButton'); // नया: जेमिनी एपीआई बटन
+        const whatsappShareBtn = document.getElementById('whatsappShare');
+        const facebookShareBtn = document.getElementById('facebookShare');
+        const instagramShareBtn = document.getElementById('instagramShare');
+        const copyMessage = document.getElementById('copyMessage');
+        const loadingSpinner = document.getElementById('loadingSpinner'); // नया: लोडिंग स्पिनर
+
+        // डिस्प्ले नाम अपडेट करने और संदेश को डिफ़ॉल्ट पर रीसेट करने का फ़ंक्शन (यदि उत्पन्न नहीं हो रहा है)
+        function updateDisplayName(isGenerating = false) {
+            const name = nameInput.value.trim();
+            if (name) {
+                displayName.textContent = name;
+            } else {
+                displayName.textContent = 'आपको'; // यदि कोई नाम दर्ज नहीं किया गया है तो डिफ़ॉल्ट टेक्स्ट
+            }
+            // जब नाम अपडेट होता है या क्रिएट बटन पर क्लिक किया जाता है तो कॉपी संदेश छिपाएं
+            copyMessage.classList.remove('show');
+
+            // यदि कोई नया संदेश उत्पन्न नहीं हो रहा है तो ही डिफ़ॉल्ट संदेश पर रीसेट करें
+            if (!isGenerating) {
+                mainWishMessage.innerHTML = `
+                    आपको और आपके परिवार को नाग पंचमी के पावन अवसर पर हार्दिक शुभकामनाएँ!
+                    <br>
+                    नाग पंचमी का यह पावन पर्व आपके जीवन में सुख, शांति और समृद्धि लाए।
+                    भगवान शिव और नाग देवता का आशीर्वाद सदा आप पर बना रहे।
+                `;
+            }
+        }
+
+        // साझा करने योग्य पूर्ण संदेश उत्पन्न करने का फ़ंक्शन (एलएलएम जनरेटेड यदि मौजूद हो)
+        function generateShareContent() {
+            const name = nameInput.value.trim();
+            let greetingPrefix = '';
+            if (name) {
+                greetingPrefix = `${name} की तरफ से`;
+            } else {
+                greetingPrefix = `आपको`;
+            }
+
+            // mainWishMessage पैराग्राफ की वर्तमान सामग्री का उपयोग करें
+            const wishMessageText = mainWishMessage.innerText;
+
+            return `${greetingPrefix}\n${wishMessageText.trim()}\n\n#नागपंचमी #NagPanchami #शुभकामनाएँ`;
+        }
+
+        // --- जेमिनी एपीआई एकीकरण ---
+        async function generateWishFromGemini() {
+            const name = nameInput.value.trim();
+            let promptText = "नाग पंचमी के लिए एक संक्षिप्त और हार्दिक शुभकामना संदेश लिखें। संदेश में भक्ति, समृद्धि और खुशी जैसे विषयों पर ध्यान केंद्रित करें। यह लगभग 50-70 शब्दों का होना चाहिए।";
+
+            if (name) {
+                promptText = `${name} की तरफ से नाग पंचमी के लिए एक संक्षिप्त और हार्दिक शुभकामना संदेश लिखें। संदेश में भक्ति, समृद्धि और खुशी जैसे विषयों पर ध्यान केंद्रित करें। यह लगभग 50-70 शब्दों का होना चाहिए।`;
+            }
+
+            // लोडिंग स्पिनर दिखाएं और बटन अक्षम करें
+            loadingSpinner.classList.add('show');
+            generateWishButton.disabled = true;
+            createButton.disabled = true;
+            nameInput.disabled = true;
+            mainWishMessage.textContent = 'शुभकामना उत्पन्न हो रही है...'; // अस्थायी संदेश
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: promptText }] });
+
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // कैनवास इसे रनटाइम पर स्वचालित रूप से प्रदान करेगा
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let retries = 0;
+            const maxRetries = 3;
+            const baseDelay = 1000; // 1 सेकंड
+
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 && retries < maxRetries - 1) { // बहुत अधिक अनुरोध
+                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 500;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            retries++;
+                            continue; // फिर से प्रयास करें
+                        }
+                        throw new Error(`API error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        mainWishMessage.innerHTML = text.replace(/\n/g, '<br>'); // नई लाइनों को ब्रेक के रूप में प्रदर्शित करें
+                    } else {
+                        mainWishMessage.textContent = 'शुभकामना उत्पन्न नहीं हो सकी।';
+                        console.error('अप्रत्याशित एपीआई प्रतिक्रिया संरचना:', result);
+                    }
+                    break; // सफलता, लूप से बाहर निकलें
+                } catch (error) {
+                    console.error('शुभकामना उत्पन्न करने में त्रुटि:', error);
+                    mainWishMessage.textContent = 'शुभकामना उत्पन्न करने में त्रुटि हुई।';
+                    // यहां कोई रीट्राय लॉजिक नहीं, क्योंकि लूप इसे संभालता है
+                } finally {
+                    // लोडिंग स्पिनर छिपाएं और बटन सक्षम करें
+                    loadingSpinner.classList.remove('show');
+                    generateWishButton.disabled = false;
+                    createButton.disabled = false;
+                    nameInput.disabled = false;
+                }
+            }
+        }
+        // --- जेमिनी एपीआई एकीकरण समाप्त ---
+
+        // क्रिएट बटन के लिए इवेंट श्रोता
+        createButton.addEventListener('click', () => updateDisplayName(false)); // उत्पन्न नहीं हो रहा है, इसलिए संदेश रीसेट करें
+
+        // नए जेनरेट विश बटन के लिए इवेंट श्रोता
+        generateWishButton.addEventListener('click', generateWishFromGemini);
+
+        // WhatsApp पर साझा करें
+        whatsappShareBtn.addEventListener('click', () => {
+            const message = encodeURIComponent(generateShareContent());
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        });
+
+        // Facebook पर साझा करें
+        facebookShareBtn.addEventListener('click', () => {
+            const message = encodeURIComponent(generateShareContent());
+            const url = encodeURIComponent(window.location.href); // वर्तमान पेज यूआरएल साझा करें
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${message}`, '_blank');
+        });
+
+        // Instagram पर साझा करें (क्लिपबोर्ड पर कॉपी करें)
+        instagramShareBtn.addEventListener('click', () => {
+            const message = generateShareContent();
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = message;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            try {
+                document.execCommand('copy');
+                copyMessage.classList.add('show');
+                setTimeout(() => {
+                    copyMessage.classList.remove('show');
+                }, 3000); // 3 सेकंड के बाद संदेश छिपाएं
+            } catch (err) {
+                console.error('टेक्स्ट कॉपी करने में विफल रहा: ', err);
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        });
+
+        // पेज लोड होने पर प्रारंभिक अपडेट
+        updateDisplayName(false);
+    </script>
+</body>
+</html>
